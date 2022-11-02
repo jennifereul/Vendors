@@ -5,14 +5,14 @@ import java.util.HashMap;
  * Class for a Vending Machine.  Contains a hashtable mapping item names to item data, as
  * well as the current balance of money that has been deposited into the machine.
  */
-class Vending {
+class Vendor {
     private static HashMap<String, Item> Stock = new HashMap<String,Item>();
     private double balance;
 
-    Vending(int numCandy, int numGum) {
+    Vendor(int numCandy, int numGum, double initial) {
         Stock.put("Candy", new Item(1.25, numCandy));
         Stock.put("Gum", new Item(.5, numGum));
-        this.balance = 0;
+        this.balance = initial;
     }
 
     /** resets the Balance to 0 */
@@ -29,7 +29,11 @@ class Vending {
      * @param amt how much money to add
      * */
     void addMoney (double amt) {
-        this.balance = this.balance + amt;
+        if(this.balance + amt <0) {
+            this.balance = 0;
+        }else {
+            this.balance = this.balance + amt;
+        }
     }
 
     /** attempt to purchase named item.  Message returned if
