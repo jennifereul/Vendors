@@ -14,4 +14,11 @@ class Item {
     void purchase(int amount) {
         this.stock = this.stock - amount;
     }
+
+    public String toString() {
+        return "Item{" +
+                "price=" + price +
+                ", stock=" + stock +
+                '}';
+    }
 }
